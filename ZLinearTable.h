@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #ifndef _LINEARTABLE_H
 #define _LINEARTABLE_H
 
@@ -16,70 +16,73 @@ template<typename T>
 class ZLinearTable {
 private:
 
-	//ÏßĞÔ±íÊı×é±¾Ìå
+	//çº¿æ€§è¡¨æ•°ç»„æœ¬ä½“
 	T *LTdata = NULL;
 
-	//ÏßĞÔ±í³¤¶È
+	//çº¿æ€§è¡¨é•¿åº¦
 	size_t len = 0;
 
-	//ÏßĞÔ±íÒÑ·ÖÅä¿Õ¼ä´óĞ¡
+	//çº¿æ€§è¡¨å·²åˆ†é…ç©ºé—´å¤§å°
 	size_t spaceSize = 0;
 public:
 
-	// ÏßĞÔ±í¹¹Ôìº¯Êı£¬Ä¬ÈÏ³õÊ¼»¯
+	// çº¿æ€§è¡¨æ„é€ å‡½æ•°ï¼Œé»˜è®¤åˆå§‹åŒ–
 	ZLinearTable();
 
-	// ÏßĞÔ±í¹¹Ôìº¯Êı£¬¸ù¾İvector³õÊ¼»¯
+	// çº¿æ€§è¡¨æ„é€ å‡½æ•°ï¼Œæ ¹æ®vectoråˆå§‹åŒ–
 	ZLinearTable(std::vector<T> vec);
 
-	// ÀàÎö¹¹º¯Êı
+	//æ‹·è´æ„é€ å‡½æ•°
+	ZLinearTable(const ZLinearTable& z);
+
+	// ç±»ææ„å‡½æ•°
 	~ZLinearTable();
 
-	// »ñÈ¡ÏßĞÔ±íÖ¸¶¨Î»ÖÃµÄÔªËØ
+	// è·å–çº¿æ€§è¡¨æŒ‡å®šä½ç½®çš„å…ƒç´ 
 	bool GetElem(size_t loc, T& elem);
 
-	// »ñÈ¡ÏßĞÔ±íÖ¸¶¨Î»ÖÃµÄÔªËØ
+	// è·å–çº¿æ€§è¡¨æŒ‡å®šä½ç½®çš„å…ƒç´ 
 	T At(size_t loc);
 
-	// ÍùÏßĞÔ±íÖ¸¶¨Î»ÖÃ²åÈëÔªËØ
+	// å¾€çº¿æ€§è¡¨æŒ‡å®šä½ç½®æ’å…¥å…ƒç´ 
 	bool InsertElem(size_t loc, T elem);
 
-	// ÍùÏßĞÔ±íµÄÄ©Î²Ôö¼ÓÔªËØ
+	// å¾€çº¿æ€§è¡¨çš„æœ«å°¾å¢åŠ å…ƒç´ 
 	bool AddElem(T elem);
 
-	// É¾³ıÏßĞÔ±íÖĞµÄÖ¸¶¨ÔªËØ
+	// åˆ é™¤çº¿æ€§è¡¨ä¸­çš„æŒ‡å®šå…ƒç´ 
 	bool DeleteElem(size_t loc);
 
-	// ÅĞ¶ÏÏßĞÔ±íÊÇ·ñÎª¿Õ
+	// åˆ¤æ–­çº¿æ€§è¡¨æ˜¯å¦ä¸ºç©º
 	bool IsEmpty();
 
-	// Çå¿ÕÏßĞÔ±í
+	// æ¸…ç©ºçº¿æ€§è¡¨
 	bool ClearList();
 
-	// »ñÈ¡ÏßĞÔ±í³¤¶È
+	// è·å–çº¿æ€§è¡¨é•¿åº¦
 	bool GetListLength(size_t& in_len);
 
-	// »ñÈ¡ÏßĞÔ±íÒÑ·ÖÅä¿Õ¼ä
+	// è·å–çº¿æ€§è¡¨å·²åˆ†é…ç©ºé—´
 	bool GetListSize(size_t& in_len);
 
-	// ¶¨Î»ÏßĞÔ±íÖĞµÚÒ»¸ö·ûºÏÒªÇóµÄÔªËØµÄÏÂ±ê£¬´Ó0¿ªÊ¼
+	// å®šä½çº¿æ€§è¡¨ä¸­ç¬¬ä¸€ä¸ªç¬¦åˆè¦æ±‚çš„å…ƒç´ çš„ä¸‹æ ‡ï¼Œä»0å¼€å§‹
 	bool LocateFirstElem(T elem, size_t& in_loc);
 
-	// ¶¨Î»ÏßĞÔ±íÖĞËùÓĞ·ûºÏÒªÇóµÄÔªËØµÄÏÂ±ê²¢°´Ë³ĞòÒÔvectorĞÎÊ½·µ»Ø£¬´Ó0¿ªÊ¼£¡
+	// å®šä½çº¿æ€§è¡¨ä¸­æ‰€æœ‰ç¬¦åˆè¦æ±‚çš„å…ƒç´ çš„ä¸‹æ ‡å¹¶æŒ‰é¡ºåºä»¥vectorå½¢å¼è¿”å›ï¼Œä»0å¼€å§‹ï¼
 	bool LocateAllElem(T elem, std::vector<size_t> vec);
 
-	// ÒÔvectorĞÎÊ½·µ»ØÏßĞÔ±íËùÓĞÄÚÈİ
+	// ä»¥vectorå½¢å¼è¿”å›çº¿æ€§è¡¨æ‰€æœ‰å†…å®¹
 	bool GetAllListData(std::vector<T> vec);
 
-	// ÖØÔØ¼ÓºÅÔËËã·û£¬½â¾öÏßĞÔ±íÏà¼ÓµÄÎÊÌâ
+	// é‡è½½åŠ å·è¿ç®—ç¬¦ï¼Œè§£å†³çº¿æ€§è¡¨ç›¸åŠ çš„é—®é¢˜
 	ZLinearTable<T> operator +(ZLinearTable<T>& zlt);
 
-	// Êä³öËùÓĞÔªËØ
+	// è¾“å‡ºæ‰€æœ‰å…ƒç´ 
 	bool ShowAllElem();
 };
 
 
-// ÏßĞÔ±í¹¹Ôìº¯Êı£¬Ä¬ÈÏ³õÊ¼»¯
+// çº¿æ€§è¡¨æ„é€ å‡½æ•°ï¼Œé»˜è®¤åˆå§‹åŒ–
 template<typename T>
 ZLinearTable<T>::ZLinearTable()
 {
@@ -88,7 +91,7 @@ ZLinearTable<T>::ZLinearTable()
 	spaceSize += DETAIL_SIZE;
 }
 
-// ÏßĞÔ±í¹¹Ôìº¯Êı£¬¸ù¾İvector³õÊ¼»¯
+// çº¿æ€§è¡¨æ„é€ å‡½æ•°ï¼Œæ ¹æ®vectoråˆå§‹åŒ–
 template<typename T>
 ZLinearTable<T>::ZLinearTable(std::vector<T> vec) :len(vec.size())
 {
@@ -102,7 +105,23 @@ ZLinearTable<T>::ZLinearTable(std::vector<T> vec) :len(vec.size())
 	}
 }
 
-// ÀàÎö¹¹º¯Êı
+template<typename T>
+ZLinearTable<T>::ZLinearTable(const ZLinearTable& z)
+{
+	size_t unSize = 0;
+	size_t unLen = 0;
+	GetListSize(unSize);
+	LTdata = (T*)malloc(sizeof(T)*unSize);
+	memset(LTdata, 0, unSize);
+	for (size_t i = 0; i < unLen; i++)
+	{
+		LTdata[i] = z.At(i);
+	}
+	len = unLen;
+	spaceSize = unSize;
+}
+
+// ç±»ææ„å‡½æ•°
 template<typename T>
 ZLinearTable<T>::~ZLinearTable()
 {
@@ -111,7 +130,7 @@ ZLinearTable<T>::~ZLinearTable()
 	free(LTdata);
 }
 
-// »ñÈ¡ÏßĞÔ±íÖ¸¶¨Î»ÖÃµÄÔªËØ
+// è·å–çº¿æ€§è¡¨æŒ‡å®šä½ç½®çš„å…ƒç´ 
 template<typename T>
 bool ZLinearTable<T>::GetElem(size_t loc, T& elem)
 {
@@ -123,14 +142,14 @@ bool ZLinearTable<T>::GetElem(size_t loc, T& elem)
 	return true;
 }
 
-// »ñÈ¡ÏßĞÔ±íÖ¸¶¨Î»ÖÃµÄÔªËØ
+// è·å–çº¿æ€§è¡¨æŒ‡å®šä½ç½®çš„å…ƒç´ 
 template<typename T>
 T ZLinearTable<T>::At(size_t loc)
 {
 	return LTdata[loc];
 }
 
-// ÍùÏßĞÔ±íÖ¸¶¨Î»ÖÃ²åÈëÔªËØ
+// å¾€çº¿æ€§è¡¨æŒ‡å®šä½ç½®æ’å…¥å…ƒç´ 
 template<typename T>
 bool ZLinearTable<T>::InsertElem(size_t loc, T elem)
 {
@@ -160,7 +179,7 @@ bool ZLinearTable<T>::InsertElem(size_t loc, T elem)
 	return true;
 }
 
-// ÍùÏßĞÔ±íµÄÄ©Î²Ôö¼ÓÔªËØ
+// å¾€çº¿æ€§è¡¨çš„æœ«å°¾å¢åŠ å…ƒç´ 
 template<typename T>
 bool ZLinearTable<T>::AddElem(T elem)
 {
@@ -182,7 +201,7 @@ bool ZLinearTable<T>::AddElem(T elem)
 	return true;
 }
 
-// É¾³ıÏßĞÔ±íÖĞµÄÖ¸¶¨ÔªËØ
+// åˆ é™¤çº¿æ€§è¡¨ä¸­çš„æŒ‡å®šå…ƒç´ 
 template<typename T>
 bool ZLinearTable<T>::DeleteElem(size_t loc)
 {
@@ -199,7 +218,7 @@ bool ZLinearTable<T>::DeleteElem(size_t loc)
 	return true;
 }
 
-// ÅĞ¶ÏÏßĞÔ±íÊÇ·ñÎª¿Õ
+// åˆ¤æ–­çº¿æ€§è¡¨æ˜¯å¦ä¸ºç©º
 template<typename T>
 bool ZLinearTable<T>::IsEmpty()
 {
@@ -213,7 +232,7 @@ bool ZLinearTable<T>::IsEmpty()
 	}
 }
 
-// Çå¿ÕÏßĞÔ±í
+// æ¸…ç©ºçº¿æ€§è¡¨
 template<typename T>
 bool ZLinearTable<T>::ClearList()
 {
@@ -229,7 +248,7 @@ bool ZLinearTable<T>::ClearList()
 	return true;
 }
 
-// »ñÈ¡ÏßĞÔ±í³¤¶È
+// è·å–çº¿æ€§è¡¨é•¿åº¦
 template<typename T>
 bool ZLinearTable<T>::GetListLength(size_t& in_len)
 {
@@ -237,7 +256,7 @@ bool ZLinearTable<T>::GetListLength(size_t& in_len)
 	return true;
 }
 
-// »ñÈ¡ÏßĞÔ±íÒÑ·ÖÅä¿Õ¼ä
+// è·å–çº¿æ€§è¡¨å·²åˆ†é…ç©ºé—´
 template<typename T>
 bool ZLinearTable<T>::GetListSize(size_t& in_len)
 {
@@ -245,7 +264,7 @@ bool ZLinearTable<T>::GetListSize(size_t& in_len)
 	return true;
 }
 
-// ¶¨Î»ÏßĞÔ±íÖĞµÚÒ»¸ö·ûºÏÒªÇóµÄÔªËØµÄÏÂ±ê
+// å®šä½çº¿æ€§è¡¨ä¸­ç¬¬ä¸€ä¸ªç¬¦åˆè¦æ±‚çš„å…ƒç´ çš„ä¸‹æ ‡
 template<typename T>
 bool ZLinearTable<T>::LocateFirstElem(T elem, size_t& in_loc)
 {
@@ -264,7 +283,7 @@ bool ZLinearTable<T>::LocateFirstElem(T elem, size_t& in_loc)
 	return true;
 }
 
-// ¶¨Î»ÏßĞÔ±íÖĞËùÓĞ·ûºÏÒªÇóµÄÔªËØµÄÏÂ±ê²¢°´Ë³ĞòÒÔvectorĞÎÊ½·µ»Ø
+// å®šä½çº¿æ€§è¡¨ä¸­æ‰€æœ‰ç¬¦åˆè¦æ±‚çš„å…ƒç´ çš„ä¸‹æ ‡å¹¶æŒ‰é¡ºåºä»¥vectorå½¢å¼è¿”å›
 template<typename T>
 bool ZLinearTable<T>::LocateAllElem(T elem, std::vector<size_t> vec)
 {
@@ -286,7 +305,7 @@ bool ZLinearTable<T>::LocateAllElem(T elem, std::vector<size_t> vec)
 	return true;
 }
 
-// ÒÔvectorĞÎÊ½·µ»ØÏßĞÔ±íËùÓĞÄÚÈİ
+// ä»¥vectorå½¢å¼è¿”å›çº¿æ€§è¡¨æ‰€æœ‰å†…å®¹
 template<typename T>
 bool ZLinearTable<T>::GetAllListData(std::vector<T> vec)
 {
@@ -301,7 +320,7 @@ bool ZLinearTable<T>::GetAllListData(std::vector<T> vec)
 	return true;
 }
 
-// ÖØÔØ¼ÓºÅÔËËã·û£¬½â¾öÏßĞÔ±íÏà¼ÓµÄÎÊÌâ
+// é‡è½½åŠ å·è¿ç®—ç¬¦ï¼Œè§£å†³çº¿æ€§è¡¨ç›¸åŠ çš„é—®é¢˜
 template<typename T>
 ZLinearTable<T> ZLinearTable<T>::operator +(ZLinearTable<T>& zlt)
 {
@@ -315,7 +334,7 @@ ZLinearTable<T> ZLinearTable<T>::operator +(ZLinearTable<T>& zlt)
 	return this_zlt;
 }
 
-// ÖØÔØÊä³öÔËËã·û
+// é‡è½½è¾“å‡ºè¿ç®—ç¬¦
 template<typename T>
 std::ostream& operator <<(std::ostream& os, ZLinearTable<T>& zlb)
 {
