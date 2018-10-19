@@ -10,7 +10,7 @@
 
 #endif
 
-const size_t DETAIL_SIZE = 255;
+const size_t DEFAULT_SIZE = 255;
 
 template<typename T>
 class ZLinearTable {
@@ -39,19 +39,19 @@ public:
 	~ZLinearTable();
 
 	// 获取线性表指定位置的元素
-	bool GetElem(size_t loc, T& elem);
+	bool GetElem(int loc, T& elem);
 
 	// 获取线性表指定位置的元素
-	T At(size_t loc);
+	T At(int loc);
 
 	// 往线性表指定位置插入元素
-	bool InsertElem(size_t loc, T elem);
+	bool InsertElem(int loc, T elem);
 
 	// 往线性表的末尾增加元素
 	bool AddElem(T elem);
 
 	// 删除线性表中的指定元素
-	bool DeleteElem(size_t loc);
+	bool DeleteElem(int loc);
 
 	// 判断线性表是否为空
 	bool IsEmpty();
@@ -86,9 +86,9 @@ public:
 template<typename T>
 ZLinearTable<T>::ZLinearTable()
 {
-	LTdata = (T*)malloc(sizeof(T)*DETAIL_SIZE);
-	memset(LTdata, 0, DETAIL_SIZE);
-	spaceSize += DETAIL_SIZE;
+	LTdata = (T*)malloc(sizeof(T)*DEFAULT_SIZE);
+	memset(LTdata, 0, DEFAULT_SIZE);
+	spaceSize += DEFAULT_SIZE;
 }
 
 // 线性表构造函数，根据vector初始化
@@ -96,9 +96,9 @@ template<typename T>
 ZLinearTable<T>::ZLinearTable(std::vector<T> vec) :len(vec.size())
 {
 	assert(vec.empty());
-	LTdata = (T*)malloc(sizeof(T)*DETAIL_SIZE);
-	memset(LTdata, 0, DETAIL_SIZE);
-	spaceSize += DETAIL_SIZE;
+	LTdata = (T*)malloc(sizeof(T)*DEFAULT_SIZE);
+	memset(LTdata, 0, DEFAULT_SIZE);
+	spaceSize += DEFAULT_SIZE;
 	for (size_t i = 0; i < vec.size(); i++)
 	{
 		LTdata[i] = vec[i];
@@ -125,35 +125,36 @@ ZLinearTable<T>::ZLinearTable(const ZLinearTable& z)
 template<typename T>
 ZLinearTable<T>::~ZLinearTable()
 {
-	len = 0;
 	spaceSize = 0;
+	this->ClearList();
 	free(LTdata);
 }
 
 // 获取线性表指定位置的元素
 template<typename T>
-bool ZLinearTable<T>::GetElem(size_t loc, T& elem)
+bool ZLinearTable<T>::GetElem(int loc, T& elem)
 {
 	if (len == 0 || loc < 0 || loc >= len)
 	{
 		return false;
 	}
-	elem = LTdata[loc];
+	elem = LTdata[(size_t)loc];
 	return true;
 }
 
 // 获取线性表指定位置的元素
 template<typename T>
-T ZLinearTable<T>::At(size_t loc)
+T ZLinearTable<T>::At(int loc)
 {
-	return LTdata[loc];
+	assert(loc < 0);
+	return LTdata[(size_t)loc];
 }
 
 // 往线性表指定位置插入元素
 template<typename T>
-bool ZLinearTable<T>::InsertElem(size_t loc, T elem)
+bool ZLinearTable<T>::InsertElem(int loc, T elem)
 {
-	if (loc > len || loc < 0)
+	if (loc > (int)len || loc < 0)
 	{
 		return false;
 	}
@@ -161,20 +162,20 @@ bool ZLinearTable<T>::InsertElem(size_t loc, T elem)
 	{
 		try
 		{
-			LTdata = (T*)realloc(LTdata, len + DETAIL_SIZE);
-			memset(LTdata + len, 0, DETAIL_SIZE);
+			LTdata = (T*)realloc(LTdata, len + DEFAULT_SIZE);
+			memset(LTdata + len, 0, DEFAULT_SIZE);
 		}
 		catch (...)
 		{
 			return false;
 		}
-		spaceSize += DETAIL_SIZE;
+		spaceSize += DEFAULT_SIZE;
 	}
-	for (size_t i = len; i > loc; i--)
+	for (size_t i = len; i > (size_t)loc; i--)
 	{
 		LTdata[i] = LTdata[i - 1];
 	}
-	LTdata[loc] = elem;
+	LTdata[(size_t)loc] = elem;
 	len += 1;
 	return true;
 }
@@ -187,14 +188,14 @@ bool ZLinearTable<T>::AddElem(T elem)
 	{
 		try
 		{
-			LTdata = (T*)realloc(LTdata, len + DETAIL_SIZE);
-			memset(LTdata + len, 0, DETAIL_SIZE);
+			LTdata = (T*)realloc(LTdata, len + DEFAULT_SIZE);
+			memset(LTdata + len, 0, DEFAULT_SIZE);
 		}
 		catch (...)
 		{
 			return false;
 		}
-		spaceSize += DETAIL_SIZE;
+		spaceSize += DEFAULT_SIZE;
 	}
 	LTdata[len] = elem;
 	len++;
@@ -203,13 +204,13 @@ bool ZLinearTable<T>::AddElem(T elem)
 
 // 删除线性表中的指定元素
 template<typename T>
-bool ZLinearTable<T>::DeleteElem(size_t loc)
+bool ZLinearTable<T>::DeleteElem(int loc)
 {
 	if (len == 0 || loc < 0 || loc >= len)
 	{
 		return false;
 	}
-	for (size_t i = loc + 1; i < len; i++)
+	for (size_t i = (size_t)loc + 1; i < len; i++)
 	{
 		LTdata[i - 1] = LTdata[i];
 	}
@@ -353,6 +354,7 @@ std::ostream& operator <<(std::ostream& os, ZLinearTable<T>& zlb)
 	return os;
 }
 
+// 输出所有元素
 template<typename T>
 bool ZLinearTable<T>::ShowAllElem()
 {

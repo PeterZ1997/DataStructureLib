@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ZLinearTable.h" />
+    <ClInclude Include="ZLinkTable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestUnit.cpp" />
