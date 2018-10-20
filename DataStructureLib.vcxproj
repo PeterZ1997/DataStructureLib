@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="ZLinearTable.h" />
     <ClInclude Include="ZLinkTable.h" />
+    <ClInclude Include="ZStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestUnit.cpp" />

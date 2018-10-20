@@ -1,6 +1,15 @@
-﻿#pragma once
-#ifndef _LINEARTABLE_H
-#define _LINEARTABLE_H
+﻿/******************************
+*
+* FileName : ZLinearTable.h
+* Author : PeterZ
+* Date : 2018.10.14
+* Comment : 线性表操作库
+*
+******************************/
+
+#pragma once
+#ifndef _ZLINEARTABLE_H
+#define _ZLINEARTABLE_H
 
 #include <iostream>
 #include <cstdlib>
@@ -39,19 +48,19 @@ public:
 	~ZLinearTable();
 
 	// 获取线性表指定位置的元素
-	bool GetElem(int loc, T& elem);
+	bool GetElem(const int loc, T& elem);
 
 	// 获取线性表指定位置的元素
-	T At(int loc);
+	T At(const int loc);
 
 	// 往线性表指定位置插入元素
-	bool InsertElem(int loc, T elem);
+	bool InsertElem(const int loc, T elem);
 
 	// 往线性表的末尾增加元素
 	bool AddElem(T elem);
 
 	// 删除线性表中的指定元素
-	bool DeleteElem(int loc);
+	bool DeleteElem(const int loc);
 
 	// 判断线性表是否为空
 	bool IsEmpty();
@@ -132,7 +141,7 @@ ZLinearTable<T>::~ZLinearTable()
 
 // 获取线性表指定位置的元素
 template<typename T>
-bool ZLinearTable<T>::GetElem(int loc, T& elem)
+bool ZLinearTable<T>::GetElem(const int loc, T& elem)
 {
 	if (len == 0 || loc < 0 || loc >= len)
 	{
@@ -144,7 +153,7 @@ bool ZLinearTable<T>::GetElem(int loc, T& elem)
 
 // 获取线性表指定位置的元素
 template<typename T>
-T ZLinearTable<T>::At(int loc)
+T ZLinearTable<T>::At(const int loc)
 {
 	assert(loc < 0);
 	return LTdata[(size_t)loc];
@@ -152,7 +161,7 @@ T ZLinearTable<T>::At(int loc)
 
 // 往线性表指定位置插入元素
 template<typename T>
-bool ZLinearTable<T>::InsertElem(int loc, T elem)
+bool ZLinearTable<T>::InsertElem(const int loc, T elem)
 {
 	if (loc > (int)len || loc < 0)
 	{
@@ -204,7 +213,7 @@ bool ZLinearTable<T>::AddElem(T elem)
 
 // 删除线性表中的指定元素
 template<typename T>
-bool ZLinearTable<T>::DeleteElem(int loc)
+bool ZLinearTable<T>::DeleteElem(const int loc)
 {
 	if (len == 0 || loc < 0 || loc >= len)
 	{

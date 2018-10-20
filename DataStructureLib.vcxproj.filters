@@ -21,6 +21,9 @@
     <ClInclude Include="ZLinkTable.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ZStack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestUnit.cpp">
